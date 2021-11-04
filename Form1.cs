@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Threading;
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
         private SerialPort port;
+        private bool connected;
         public Form1()
         {
             port = new SerialPort();
@@ -31,12 +33,18 @@ namespace WinFormsApp1
 
         private void Send_Click(object sender, EventArgs e)
         {
-
+            if (port.IsOpen)
+                port.Write("atd" + PortTextBox.Text + "\r");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (port.IsOpen)
+            {
+                connected = true;
+                port.Write("ATA\r");
+                ScreenTextBox.Text += "Odbieranie" + Environment.NewLine;
+            }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,7 +66,7 @@ namespace WinFormsApp1
                 port.BaudRate = 9600;
                 port.StopBits = StopBits.One;
                 port.Handshake = Handshake.RequestToSend;
-                //port.DataReceived += dataReceived;
+                port.DataReceived += dataReceived;
                 port.RtsEnable = true;
                 port.DtrEnable = true;
 
@@ -93,6 +101,33 @@ namespace WinFormsApp1
             {
                 port.Write(MessageBox.Text + "\r");
                 ScreenTextBox.Text += "->"+MessageBox.Text+ Environment.NewLine;
+            }
+        }
+        private void dataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            var data = port.ReadExisting();
+            if(data.Contains("CON"))
+            {
+                connected = true;
+                ScreenTextBox.Text += "Połączono z drugim modemem"+Environment.NewLine ;
+            }
+            ScreenTextBox.Text += "<-"+data  + Environment.NewLine;
+        }
+
+        private void CommandMode_Click(object sender, EventArgs e)
+        {
+            if(port.IsOpen)
+            {
+                if (connected)
+                {
+                    ScreenTextBox.Text += "Tryb komend\n";
+                    port.Write("+");
+                    Thread.Sleep(100);
+                    port.Write("+");
+                    Thread.Sleep(100);
+                    port.Write("+");
+                    Thread.Sleep(100);
+                }
             }
         }
     }

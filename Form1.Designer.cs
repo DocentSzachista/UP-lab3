@@ -29,7 +29,7 @@ namespace WinFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            this.Port = new System.Windows.Forms.TextBox();
+            this.PortTextBox = new System.Windows.Forms.TextBox();
             this.Connect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Retrieve = new System.Windows.Forms.Button();
@@ -43,13 +43,13 @@ namespace WinFormsApp1
             this.ScreenTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // Port
+            // PortTextBox
             // 
-            this.Port.Location = new System.Drawing.Point(12, 219);
-            this.Port.Name = "Port";
-            this.Port.Size = new System.Drawing.Size(200, 23);
-            this.Port.TabIndex = 0;
-            this.Port.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.PortTextBox.Location = new System.Drawing.Point(12, 219);
+            this.PortTextBox.Name = "PortTextBox";
+            this.PortTextBox.Size = new System.Drawing.Size(200, 23);
+            this.PortTextBox.TabIndex = 0;
+            this.PortTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Connect
             // 
@@ -100,6 +100,7 @@ namespace WinFormsApp1
             this.CommandMode.TabIndex = 5;
             this.CommandMode.Text = "Tryb komend";
             this.CommandMode.UseVisualStyleBackColor = true;
+            this.CommandMode.Click += new System.EventHandler(this.CommandMode_Click);
             // 
             // WritingMode
             // 
@@ -171,7 +172,7 @@ namespace WinFormsApp1
             this.Controls.Add(this.Retrieve);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Connect);
-            this.Controls.Add(this.Port);
+            this.Controls.Add(this.PortTextBox);
             this.Name = "Form1";
             this.Text = "Aplikacja modemowa";
             this.ResumeLayout(false);
@@ -181,7 +182,7 @@ namespace WinFormsApp1
 
         #endregion
 
-        private System.Windows.Forms.TextBox Port;
+        private System.Windows.Forms.TextBox PortTextBox;
         private System.Windows.Forms.Button Connect;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Retrieve;
