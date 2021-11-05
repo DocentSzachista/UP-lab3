@@ -41,6 +41,7 @@ namespace WinFormsApp1
             this.MessageBox = new System.Windows.Forms.TextBox();
             this.SendMessage = new System.Windows.Forms.Button();
             this.ScreenTextBox = new System.Windows.Forms.RichTextBox();
+            this.Break_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PortTextBox
@@ -49,7 +50,6 @@ namespace WinFormsApp1
             this.PortTextBox.Name = "PortTextBox";
             this.PortTextBox.Size = new System.Drawing.Size(200, 23);
             this.PortTextBox.TabIndex = 0;
-            this.PortTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Connect
             // 
@@ -88,7 +88,7 @@ namespace WinFormsApp1
             this.EndConnection.Name = "EndConnection";
             this.EndConnection.Size = new System.Drawing.Size(246, 23);
             this.EndConnection.TabIndex = 4;
-            this.EndConnection.Text = "Zerwij połączenie z modemem";
+            this.EndConnection.Text = "Zerwij połączenie i zamknij port";
             this.EndConnection.UseVisualStyleBackColor = true;
             this.EndConnection.Click += new System.EventHandler(this.EndConnection_Click);
             // 
@@ -110,6 +110,7 @@ namespace WinFormsApp1
             this.WritingMode.TabIndex = 6;
             this.WritingMode.Text = "Tryb pisania";
             this.WritingMode.UseVisualStyleBackColor = true;
+            this.WritingMode.Click += new System.EventHandler(this.WritingMode_Click);
             // 
             // ConnectSerial
             // 
@@ -156,11 +157,22 @@ namespace WinFormsApp1
             this.ScreenTextBox.TabIndex = 13;
             this.ScreenTextBox.Text = "";
             // 
+            // Break_Button
+            // 
+            this.Break_Button.Location = new System.Drawing.Point(407, 162);
+            this.Break_Button.Name = "Break_Button";
+            this.Break_Button.Size = new System.Drawing.Size(246, 42);
+            this.Break_Button.TabIndex = 14;
+            this.Break_Button.Text = "Zerwij połączenie z modemem (zawiesza interfejs na 5 sekund)";
+            this.Break_Button.UseVisualStyleBackColor = true;
+            this.Break_Button.Click += new System.EventHandler(this.Break_Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 302);
+            this.Controls.Add(this.Break_Button);
             this.Controls.Add(this.ScreenTextBox);
             this.Controls.Add(this.SendMessage);
             this.Controls.Add(this.MessageBox);
@@ -194,6 +206,7 @@ namespace WinFormsApp1
         private System.Windows.Forms.TextBox MessageBox;
         private System.Windows.Forms.Button SendMessage;
         private System.Windows.Forms.RichTextBox ScreenTextBox;
+        private System.Windows.Forms.Button Break_Button;
     }
 }
 

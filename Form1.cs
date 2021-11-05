@@ -21,10 +21,6 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -121,14 +117,44 @@ namespace WinFormsApp1
                 if (connected)
                 {
                     ScreenTextBox.Text += "Tryb komend\n";
-                    port.Write("+");
-                    Thread.Sleep(100);
-                    port.Write("+");
-                    Thread.Sleep(100);
-                    port.Write("+");
-                    Thread.Sleep(100);
+                    ChangeToCommandLine();
                 }
             }
+        }
+        private void ChangeToCommandLine()
+        {
+            port.Write("+");
+            Thread.Sleep(100);
+            port.Write("+");
+            Thread.Sleep(100);
+            port.Write("+");
+            Thread.Sleep(100);
+        }
+        private void WritingMode_Click(object sender, EventArgs e)
+        {
+            if(port.IsOpen)
+                if(connected)
+                {
+                    ScreenTextBox.Text += "Tryb pisania\n";
+                    port.Write("ato\r");
+                }
+        }
+
+        private void Break_Button_Click(object sender, EventArgs e)
+        {
+            if(port.IsOpen)
+            {
+                if(connected)
+                {
+                    ScreenTextBox.Text += "Tryb Zrywanie\n";
+                    ChangeToCommandLine();
+                    Thread.Sleep(1000);
+                    port.Write("ATH\r");
+                    Thread.Sleep(5000);
+                    port.Write("ATH\r");
+                    connected = false;
+                }
+            }    
         }
     }
 }
