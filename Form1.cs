@@ -22,15 +22,12 @@ namespace WinFormsApp1
         }
 
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+   
 
         private void Send_Click(object sender, EventArgs e)
         {
             if (port.IsOpen)
-                port.Write("atd" + PortTextBox.Text + "\r");
+                port.Write("ATD" + PortTextBox.Text + "\r");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,7 +72,7 @@ namespace WinFormsApp1
                 }
                 catch(Exception ex)
                 {
-                    ScreenTextBox.Text += "błąd"+ex.Message;
+                    ScreenTextBox.Text += $"Błąd: {ex.Message}\n";
                 }
 
             }
@@ -136,7 +133,7 @@ namespace WinFormsApp1
                 if(connected)
                 {
                     ScreenTextBox.Text += "Tryb pisania\n";
-                    port.Write("ato\r");
+                    port.Write("ATO\r");
                 }
         }
 
@@ -155,6 +152,16 @@ namespace WinFormsApp1
                     connected = false;
                 }
             }    
+        }
+
+        private void ScreenTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ScreenTextBox.ScrollToCaret();
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

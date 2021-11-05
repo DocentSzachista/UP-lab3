@@ -69,7 +69,6 @@ namespace WinFormsApp1
             this.label1.Size = new System.Drawing.Size(110, 30);
             this.label1.TabIndex = 2;
             this.label1.Text = "Numer modemu  z \r\nktórym się łączymy";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Retrieve
             // 
@@ -156,6 +155,7 @@ namespace WinFormsApp1
             this.ScreenTextBox.Size = new System.Drawing.Size(363, 110);
             this.ScreenTextBox.TabIndex = 13;
             this.ScreenTextBox.Text = "";
+            this.ScreenTextBox.TextChanged += new System.EventHandler(this.ScreenTextBox_TextChanged);
             // 
             // Break_Button
             // 
@@ -171,7 +171,7 @@ namespace WinFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 302);
+            this.ClientSize = new System.Drawing.Size(665, 280);
             this.Controls.Add(this.Break_Button);
             this.Controls.Add(this.ScreenTextBox);
             this.Controls.Add(this.SendMessage);
